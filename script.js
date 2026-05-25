@@ -1,45 +1,40 @@
-// Wait for the entire page to load before running anything
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("DOM fully loaded");
-  addTabIndex();
-});
-
-function addTabIndex() {
-  console.log("addTabIndex triggered — adding tabindex to all thumbnail images");
+  console.log("DOMContentLoaded fired");
 
   var images = document.querySelectorAll("#thumbnails img");
+  console.log("Number of images found:", images.length);
 
   for (var i = 0; i < images.length; i++) {
     images[i].setAttribute("tabindex", i + 1);
 
-    // Attach mouseover and mouseout events via JavaScript (not inline HTML)
     images[i].addEventListener("mouseover", function() {
-      upDate(this);
-    });
-    images[i].addEventListener("mouseout", function() {
-      undo();
+      console.log("mouseover on:", this.alt);
+      document.getElementById("image").textContent = this.alt;
+      document.getElementById("image").style.backgroundImage = "url('" + this.src + "')";
+      document.getElementById("image").style.backgroundSize = "cover";
+      document.getElementById("image").style.backgroundPosition = "center";
+      document.getElementById("image").style.color = "white";
     });
 
-    // Attach focus and blur events for keyboard accessibility
-    images[i].addEventListener("focus", function() {
-      upDate(this);
+    images[i].addEventListener("mouseout", function() {
+      document.getElementById("image").style.backgroundImage = "";
+      document.getElementById("image").textContent = "Hover over an image below to display here.";
+      document.getElementById("image").style.color = "";
     });
+
+    images[i].addEventListener("focus", function() {
+      console.log("focus on:", this.alt);
+      document.getElementById("image").textContent = this.alt;
+      document.getElementById("image").style.backgroundImage = "url('" + this.src + "')";
+      document.getElementById("image").style.backgroundSize = "cover";
+      document.getElementById("image").style.backgroundPosition = "center";
+      document.getElementById("image").style.color = "white";
+    });
+
     images[i].addEventListener("blur", function() {
-      undo();
+      document.getElementById("image").style.backgroundImage = "";
+      document.getElementById("image").textContent = "Hover over an image below to display here.";
+      document.getElementById("image").style.color = "";
     });
   }
-}
-
-function upDate(previewPic) {
-  console.log("upDate triggered");
-  console.log("alt:", previewPic.alt);
-  console.log("src:", previewPic.src);
-
-  document.getElementById("image").textContent = previewPic.alt;
-  document.getElementById("image").style.backgroundImage = "url('" + previewPic.src + "')";
-}
-
-function undo() {
-  document.getElementById("image").style.backgroundImage = "url('')";
-  document.getElementById("image").textContent = "Hover over an image below to display here.";
-}
+});
