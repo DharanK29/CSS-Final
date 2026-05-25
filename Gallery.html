@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Website - Gallery</title>
+  <style>
+    a.skip { position: absolute; top: -40px; } a.skip:focus { top: 0; }
+    nav { display: flex; gap: 20px; background: navy; padding: 10px; }
+    nav a { color: white; text-decoration: none; font-size: 18px; }
+    nav a:hover { color: yellow; text-decoration: underline; }
+    .flex-row { display: flex; flex-wrap: wrap; gap: 15px; padding: 20px; }
+    img { border: 3px solid navy; padding: 5px; border-radius: 10px; width: 200px; height: 200px; object-fit: cover; }
+    img:nth-child(odd)  { border-radius: 10px; }
+    img:nth-child(even) { border-radius: 50%; }
+    img:hover { border-color: orange; transform: scale(1.08); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to Main Content</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <main id="main">
+    <h1>Gallery</h1>
+    <p>All photos are shown below in a flex layout.</p>
+    <div class="flex-row">
+      <img src="https://picsum.photos/seed/f/400/400" alt="Photo 1">
+      <img src="https://picsum.photos/seed/g/400/400" alt="Photo 2">
+      <img src="https://picsum.photos/seed/h/400/400" alt="Photo 3">
+      <img src="https://picsum.photos/seed/i/400/400" alt="Photo 4">
+      <img src="https://picsum.photos/seed/j/400/400" alt="Photo 5">
+    </div>
+  </main>
+</body>
+</html>
